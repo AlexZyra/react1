@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import Button from './components/button';
+import Input from './components/Input';
+import RedDiv from './components/RedDiv';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello World</h1>
+      <p>AAAAA REACT</p>
+      <h1>Prikin tut react</h1>
+      <Input />
+      <Button txt="Hello" />
+      <Button txt="Boo"></Button>
+      <Button txt="LOL"></Button>
+      <Button txt="Cancel"></Button>
+      <Button txt="Submit"></Button>
+      <RedDiv />
+      
     </div>
   );
 }
