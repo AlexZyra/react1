@@ -1,4 +1,4 @@
-import Button from './components/button';
+import Button from './components/Button';
 import Input from './components/Input';
 import RedDiv from './components/RedDiv';
 import './App.css';
