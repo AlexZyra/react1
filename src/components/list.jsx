@@ -12,7 +12,7 @@ const List = () => {
                 setIsLoading(true);
 
                 const response = await fetch(
-                    "https://jsonplaceholder.typicode.com/users"
+                    // "https://jsonplaceholder.typicode.com/posts"
                 );
 
                 if (!response.ok) {
@@ -34,8 +34,8 @@ const List = () => {
     return (
         <div>
             {error && <h1>{error}</h1>}
-            {isLoading && <h1>Loading</h1>}
-            {/* <div className="spinner"></div> */}
+            {isLoading && <div className="spinner"></div>}            
+{/* <h1>Loading</h1> */}
             <ul className="ul">
                 {/* {items.map((i) => (
                 <li>{i}</li>

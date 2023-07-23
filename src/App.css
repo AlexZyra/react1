@@ -1,4 +1,4 @@
-#redDiv {
+/* #redDiv {
   height: 100px;
   width: 100px;
   background-color: red;
@@ -45,4 +45,21 @@
   100% {
     transform: rotate(1turn);
   }
+} */
+
+.navigation {
+  padding: 20px, 30px;
+  background-color: gray;
+  
+  height: 40px;
+}
+
+.navigation a{
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.post-title {
+  color: pink;
+  font-weight: 700;
 }

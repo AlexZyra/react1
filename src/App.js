@@ -8,30 +8,38 @@ import Form from './components/Form';
 import { useState, useEffect } from 'react';
 import Box from './components/Box'
 
+import { Route, Routes, NavLink, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Posts from './pages/Posts';
+import About from './pages/About';
+import Post from './pages/Post';
+// import Admin from './pages/Admin';
+
+
 function App() {
-  const buttonText = 'Click here!';
+  // const buttonText = 'Click here!';
   // const users = ['User1', 'User2', 'User3', 'User4'];
 
-  const handleSubmit = () => {
-    console.log("sub");
-  };
+  // const handleSubmit = () => {
+  //   console.log("sub");
+  // };
 
-  const handleSave = () => {
-    console.log("sav");
-  }
+  // const handleSave = () => {
+  //   console.log("sav");
+  // }
 
 
   // Counter //
 
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
 
-  const handleIncrement = () => {
-    setCounter(counter + 1)
-  }
+  // const handleIncrement = () => {
+  //   setCounter(counter + 1)
+  // }
 
-  const handleDecrement = () => {
-    setCounter(counter - 1)
-  }
+  // const handleDecrement = () => {
+  //   setCounter(counter - 1)
+  // }
 
   // Counter //
 
@@ -75,8 +83,23 @@ function App() {
 
 return(
   <div>
-    <List />
-    <Box />
+    {/* <List /> */}
+    {/* <Box /> */}
+    <nav className='navigation'>
+
+      <NavLink to="/" element={<Home />}>Home</NavLink>
+      <NavLink to="/about" element={<About />}>About</NavLink>
+      <NavLink to="/posts" element={<Posts />}>Posts</NavLink>
+
+    </nav>
+
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/posts' element={<Posts />} />
+      <Route path='/products/:postId' element={<Post />} />
+      
+    </Routes>
   </div>
 )
 

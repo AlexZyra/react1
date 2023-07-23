@@ -5,9 +5,10 @@ const Box = () => {
     // useEffect(() => {
     //     console.log("Click");
     // }, [count]);
+    
     useEffect(() => {
         const handleClick = () => {
-            alert('click');
+            console.log('click');
         }
 
         window.addEventListener('click', handleClick);
