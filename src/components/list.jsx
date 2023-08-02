@@ -1,51 +1,13 @@
-import { useEffect, useState } from "react";
+import React from "react";
 
-const List = () => {
-    // const { items } = props;
-    const [products, setProducts] = useState([]);
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    useEffect(() => {
-        const getProducts = async () => {
-            try {
-                setError("");
-                setIsLoading(true);
-
-                const response = await fetch(
-                    // "https://jsonplaceholder.typicode.com/posts"
-                );
-
-                if (!response.ok) {
-                    throw new Error("Failed :(");
-                }
-
-                const data = await response.json();
-                setProducts(data);
-            } catch (e) {
-                setError(e.message);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-
-        getProducts()
-    }, [])
-
+const List = (props) => {
+    const { items } = props;
     return (
-        <div>
-            {error && <h1>{error}</h1>}
-            {isLoading && <div className="spinner"></div>}            
-{/* <h1>Loading</h1> */}
-            <ul className="ul">
-                {/* {items.map((i) => (
+        <ul>
+            {items.map((i) => (
                 <li>{i}</li>
-            ))} */}
-                {products.length > 0 &&
-                    products.map(i => <li key={i.id}>{i.name}</li>)}
-
-            </ul>
-        </div>
-
+            ))}
+        </ul>
     )
 }
 
