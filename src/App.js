@@ -1,15 +1,16 @@
 import './App.css';
+import { useState, useEffect, useReducer } from 'react';
 
 import Button from './components/Button';
 import Input from './components/Input';
 import RedDiv from './components/RedDiv';
 // import List from './components/list';
 import Form from './components/Form';
-import { useState, useEffect } from 'react';
 import Box from './components/Box';
 
 import Home from './components/Home';
 import { createContext } from 'react';
+import Counter from './components/Counter';
 export const Context = createContext(null);
 
 
@@ -87,7 +88,7 @@ function App() {
   //     </div>
   //   )
 
-  
+
   //   return (
   //     <div>
   //       {/* <List /> */}
@@ -141,39 +142,68 @@ function App() {
   //     
   //   </div>
   // );
-  
-  
-  
-  
-  const users = [
-    { id: 1, name: "User 1" },
-    { id: 2, name: "User 2" },
-    { id: 3, name: "User 3" },
-    { id: 4, name: "User 4" }
-  ]
-
-  const [title, setTitle] = useState("")
-  const [todos, setTodos] = useState([])
 
 
-  const handleCreateTodo = () => {
-    const obj = {
-      id: Date.now(),
-      title: title,
-      checked: false
-    };
-    setTodos((prevState) => [...prevState])
-  }
 
+
+  // const users = [
+  //   { id: 1, name: "User 1" },
+  //   { id: 2, name: "User 2" },
+  //   { id: 3, name: "User 3" },
+  //   { id: 4, name: "User 4" }
+  // ]
+
+
+  
+  
   return (
     <div>
-      {/* <Input value={title} onChange={setTitle} />
-      <Button text="Create todo" onClick={handleCreateTodo} /> */}
-      <Context.Provider value={{items: users}}>
-        <Home/>
-      </Context.Provider>
+      <Counter />
     </div>
+
   )
+
+  // const [title, setTitle] = useState("")
+  // const [todos, setTodos] = useState([])
+
+
+  // const handleCreateTodo = () => {
+  //   const obj = {
+  //     id: Date.now(),
+  //     title: title,
+  //     checked: false
+  //   };
+  //   setTodos((prevState) => [...prevState])
+  // }
+
+  // const handleDeleteTodo = () => {
+
+  // }
+
+  // const handleCheckTodo = () => {
+
+  // }
+
+  // const enterEditMode = () => {
+
+  // }
+
+
+
+
+
+  // return (
+  //   <div>
+  //     {/* <Input value={title} onChange={setTitle} />
+  //     <Button text="Create todo" onClick={handleCreateTodo} /> */}
+  //     {/* <Context.Provider value={{items: users}}>
+  //       <Home/>
+  //     </Context.Provider> */}
+
+
+
+  //   </div>
+  // )
 }
 
 export default App;
