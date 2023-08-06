@@ -63,3 +63,24 @@
   color: pink;
   font-weight: 700;
 }
+
+.app{
+  text-align: center;
+}
+
+.item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.item h3{
+  margin: 20px;
+}
+
+.form{
+  padding: 15px;
+  border: 1px solid black;
+  margin: 20px 10px;
+}

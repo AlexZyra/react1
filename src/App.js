@@ -11,6 +11,8 @@ import Box from './components/Box';
 import Home from './components/Home';
 import { createContext } from 'react';
 import Counter from './components/Counter';
+import Item from './components/Item';
+import EditForm from './components/EditForm';
 export const Context = createContext(null);
 
 
@@ -154,56 +156,97 @@ function App() {
   // ]
 
 
-  
-  
-  return (
-    <div>
-      <Counter />
-    </div>
-
-  )
-
-  // const [title, setTitle] = useState("")
-  // const [todos, setTodos] = useState([])
-
-
-  // const handleCreateTodo = () => {
-  //   const obj = {
-  //     id: Date.now(),
-  //     title: title,
-  //     checked: false
-  //   };
-  //   setTodos((prevState) => [...prevState])
-  // }
-
-  // const handleDeleteTodo = () => {
-
-  // }
-
-  // const handleCheckTodo = () => {
-
-  // }
-
-  // const enterEditMode = () => {
-
-  // }
-
-
-
 
 
   // return (
   //   <div>
-  //     {/* <Input value={title} onChange={setTitle} />
-  //     <Button text="Create todo" onClick={handleCreateTodo} /> */}
-  //     {/* <Context.Provider value={{items: users}}>
-  //       <Home/>
-  //     </Context.Provider> */}
-
-
-
+  //     <Counter />
   //   </div>
+
   // )
+
+  const [title, setTitle] = useState("")
+  const [todos, setTodos] = useState([])
+  const [editedTodo, setEditedTodo] = useState({})
+  const [isEditing, setIsEditing] = useState(false)
+
+
+  const handleCreateTodo = () => {
+    const obj = {
+      id: Date.now(),
+      title: title,
+      checked: false
+    };
+    setTodos([...todos, obj]);
+  }
+
+  const handleDeleteTodo = (id) => {
+    const newArr = todos.filter((i) => i.id !== id);
+    setTodos(newArr)
+  }
+
+  const handleCheckTodo = (id) => {
+    setTodos((prevTodo) => prevTodo.map(t => (t.id === id ? { ...t, checked: !t.checked } : t)))
+  }
+
+  const handleUpdateTodo = (updatedTodo) => {
+
+    const newArr = todos.map(todo => {
+      if (todo.id === updatedTodo.id) {
+        return {
+          ...todo,
+          title: updatedTodo.title
+        }
+      }
+
+      return todo
+    })
+
+    setTodos(newArr)
+    setIsEditing(false)
+  }
+
+  const enterEditMode = (todo) => {
+    setEditedTodo(todo);
+    setIsEditing(true);
+  }
+
+
+  return (
+    <div className='app'>
+      {isEditing && (
+        <div>
+          <EditForm onUpdate={handleUpdateTodo} editedTodo={editedTodo} />
+        </div>
+      )}
+
+      <div>
+        <Input value={title} onChange={setTitle} />
+        <Button text="Create todo" onClick={handleCreateTodo} />
+      </div>
+      <div>
+        {todos.length > 0 &&
+          todos.map(i =>
+            <Item
+              key={i.id}
+              item={i}
+              onDelete={handleDeleteTodo}
+              onCheck={handleCheckTodo}
+              onEdit={enterEditMode}
+            />)}
+      </div>
+
+
+
+
+      {/* <Context.Provider value={{items: users}}>
+        <Home/>
+      </Context.Provider> */}
+
+
+
+    </div>
+  )
 }
 
 export default App;

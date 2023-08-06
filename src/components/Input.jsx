@@ -8,14 +8,15 @@ const Input = (props) => {
     // )
 
 
-    const {type = "text", placeholder, value, onChange} = props
+    const { type = "text", placeholder, value, onChange, checked } = props
 
     return (
         <input
             type={type}
             placeholder={placeholder}
             value={value}
-            onChange={(e) => onChange(e.target.value)} 
+            checked={checked}
+            onChange={(e) => onChange(e.target.value)}
         />
     )
 
