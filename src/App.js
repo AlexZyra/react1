@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer, useMemo } from 'react';
 
 import Button from './components/Button';
 import Input from './components/Input';
@@ -8,11 +8,16 @@ import RedDiv from './components/RedDiv';
 import Form from './components/Form';
 import Box from './components/Box';
 
-import Home from './components/Home';
+// import Home from './components/Home';
 import { createContext } from 'react';
 import Counter from './components/Counter';
 import Item from './components/Item';
 import EditForm from './components/EditForm';
+import Widget from './components/Widget';
+import { NavLink, Route, Router, Routes } from 'react-router-dom';
+import Posts from './pages/Posts';
+import Users from './pages/Users';
+import Home from './pages/Home';
 export const Context = createContext(null);
 
 
@@ -165,86 +170,121 @@ function App() {
 
   // )
 
-  const [title, setTitle] = useState("")
-  const [todos, setTodos] = useState([])
-  const [editedTodo, setEditedTodo] = useState({})
-  const [isEditing, setIsEditing] = useState(false)
+  // const [title, setTitle] = useState("")
+  // const [todos, setTodos] = useState([])
+  // const [editedTodo, setEditedTodo] = useState({})
+  // const [isEditing, setIsEditing] = useState(false)
 
 
-  const handleCreateTodo = () => {
-    const obj = {
-      id: Date.now(),
-      title: title,
-      checked: false
-    };
-    setTodos([...todos, obj]);
-  }
+  // const handleCreateTodo = () => {
+  //   const obj = {
+  //     id: Date.now(),
+  //     title: title,
+  //     checked: false
+  //   };
+  //   setTodos([...todos, obj]);
+  // }
 
-  const handleDeleteTodo = (id) => {
-    const newArr = todos.filter((i) => i.id !== id);
-    setTodos(newArr)
-  }
+  // const handleDeleteTodo = (id) => {
+  //   const newArr = todos.filter((i) => i.id !== id);
+  //   setTodos(newArr)
+  // }
 
-  const handleCheckTodo = (id) => {
-    setTodos((prevTodo) => prevTodo.map(t => (t.id === id ? { ...t, checked: !t.checked } : t)))
-  }
+  // const handleCheckTodo = (id) => {
+  //   setTodos((prevTodo) => prevTodo.map(t => (t.id === id ? { ...t, checked: !t.checked } : t)))
+  // }
 
-  const handleUpdateTodo = (updatedTodo) => {
+  // const handleUpdateTodo = (updatedTodo) => {
 
-    const newArr = todos.map(todo => {
-      if (todo.id === updatedTodo.id) {
-        return {
-          ...todo,
-          title: updatedTodo.title
-        }
-      }
+  //   const newArr = todos.map(todo => {
+  //     if (todo.id === updatedTodo.id) {
+  //       return {
+  //         ...todo,
+  //         title: updatedTodo.title
+  //       }
+  //     }
 
-      return todo
-    })
+  //     return todo
+  //   })
 
-    setTodos(newArr)
-    setIsEditing(false)
-  }
+  //   setTodos(newArr)
+  //   setIsEditing(false)
+  // }
 
-  const enterEditMode = (todo) => {
-    setEditedTodo(todo);
-    setIsEditing(true);
-  }
-
-
-  return (
-    <div className='app'>
-      {isEditing && (
-        <div>
-          <EditForm onUpdate={handleUpdateTodo} editedTodo={editedTodo} />
-        </div>
-      )}
-
-      <div>
-        <Input value={title} onChange={setTitle} />
-        <Button text="Create todo" onClick={handleCreateTodo} />
-      </div>
-      <div>
-        {todos.length > 0 &&
-          todos.map(i =>
-            <Item
-              key={i.id}
-              item={i}
-              onDelete={handleDeleteTodo}
-              onCheck={handleCheckTodo}
-              onEdit={enterEditMode}
-            />)}
-      </div>
+  // const enterEditMode = (todo) => {
+  //   setEditedTodo(todo);
+  //   setIsEditing(true);
+  // }
 
 
+  // return (
+  //   <div className='app'>
+  //     {isEditing && (
+  //       <div>
+  //         <EditForm onUpdate={handleUpdateTodo} editedTodo={editedTodo} />
+  //       </div>
+  //     )}
+
+  //     <div>
+  //       <Input value={title} onChange={setTitle} />
+  //       <Button text="Create todo" onClick={handleCreateTodo} />
+  //     </div>
+  //     <div>
+  //       {todos.length > 0 &&
+  //         todos.map(i =>
+  //           <Item
+  //             key={i.id}
+  //             item={i}
+  //             onDelete={handleDeleteTodo}
+  //             onCheck={handleCheckTodo}
+  //             onEdit={enterEditMode}
+  //           />)}
+  //     </div>
 
 
-      {/* <Context.Provider value={{items: users}}>
+
+
+  {/* <Context.Provider value={{items: users}}>
         <Home/>
       </Context.Provider> */}
 
 
 
+  // </div>
+  // )
+
+  // const [count, setCount] = useState(0)
+
+  // // const users = 
+
+  // const memoUsers = useMemo(() => [
+  //   {id: 1, name: "User 1"},
+  //   {id: 2, name: "User 2"},
+  //   {id: 3, name: "User 3"},
+  //   {id: 4, name: "User 4"},
+  //   {id: 5, name: "User 5"},
+  // ], [])
+
+  // return (
+  //   <div className='app'>
+  //     <h1>Count: {count}</h1>
+  //     <Widget users={memoUsers}/>
+  //     <button onClick={() => setCount(count + 1)}>Increment</button>
+  //   </div>
+
+  // )
+
+
+  return (
+    <div className='app'>
+      <NavLink to='/' element={<Home />} className='link'>Home</NavLink>
+      <NavLink to='/posts' element={<Posts />} className='link'>Posts</NavLink>
+      <NavLink to='/users' element={<Users />} className='link'>Users</NavLink>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/posts' element={<Posts />}/>
+        <Route path='/users' element={<Users />}/>
+      </Routes>
     </div>
   )
 }

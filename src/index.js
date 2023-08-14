@@ -6,5 +6,6 @@ import App from './App';
 import CounterProvider from './components/CounterProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<CounterProvider><App/></CounterProvider> );
-{/* <BrowserRouter></BrowserRouter> */}
+root.render(<BrowserRouter><App/></BrowserRouter>);
+
+{/* <CounterProvider></CounterProvider> */}
